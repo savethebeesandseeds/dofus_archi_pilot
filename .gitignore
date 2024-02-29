@@ -1,4 +1,4 @@
-data/archis/*
-data/archis_backup/*
-data/temp/*
-vscode*
+data/archis/*.bmp
+data/archis_backup/*.bmp
+data/temp/*.bmp
+.vscode*

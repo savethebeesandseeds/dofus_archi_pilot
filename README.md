@@ -37,5 +37,7 @@ Test changing these:
 
 3. If the algorithm is incorrect in identifying new archis, you might want to change the configuration setting ```threshold``` or find an archi, take a screenshot, crop the part that has the logo of the archi as in *./data/archi.bmp* and cover the backgound with black #000000
 
+4. If you have lag, increse ```delta_position_threshold```
+
 ### Build from source instructions
 Follow the instructions in file *./deploy.md*

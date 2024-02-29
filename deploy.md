@@ -22,14 +22,16 @@ Open CMD and type these commands:
 
 > docker run -it --name=archi_pilot -v .:/src debian:11 
 
-> docker exec -it archi_pilot /bin/sh
+> docker exec -it archi_pilot /bin/bash
 
 ### install linux dependencies
 Now you are no longer in Windows, but inside a Linux Docker. Type these commands.
 
 > apt update
 
-> apt install mingw-w64 make cmake g++ git -y
+> apt install mingw-w64 make cmake g++ git --no-install-recommends -y
+
+> apt install --reinstall ca-certificates --no-install-recommends -y
 
 > mkdir /external
 
@@ -41,19 +43,21 @@ Now you are no longer in Windows, but inside a Linux Docker. Type these commands
 
 > cp /src/resources/generate-std-like-headers.sh /external/mingw-std-threads
 
-> cd /external/mingw-std-threads
+> 
 
 > chmod +x generate-std-like-headers.sh
 
 > ./generate-std-like-headers.sh
 
 ### Download OpenCV source
+
 > git clone https://github.com/opencv/opencv.git
 
 ### Build OpenCV from source to target a Windows enviroment
-> cp /src/resources/mingw64_toolchain.cmake /external/opencv
 
-> cd /external/opencv
+> cp /src/resources/mingw64_toolchain.cmake /external/opencv/
+
+> cd /external/opencv/
 
 > mkdir build
 
@@ -85,7 +89,7 @@ Now you are no longer in Windows, but inside a Linux Docker. Type these commands
       -DCMAKE_TOOLCHAIN_FILE=/external/opencv/mingw64_toolchain.cmake \
       /external/opencv
 
-> make -j4
+> make -j$(nproc)
 
 ### Validate 
 Make sure the installation works. It should, that's a nice thing about Docker. 
@@ -93,7 +97,7 @@ Make sure the installation works. It should, that's a nice thing about Docker.
 ### Compile the auto_pilot code
 > cd /src
 
-> make main
+> make main -k$(nproc)
 
 ### Run
 Check insturctions on *./README.md*

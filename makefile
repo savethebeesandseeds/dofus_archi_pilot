@@ -5,7 +5,7 @@ endif
 main:
 	x86_64-w64-mingw32-g++ -Wall -o \
 		./build/archi_pilot.exe main.cpp \
-		-I./lib -I/external/opencv/include \
+		-I./include -I/external/opencv/include \
 		-I/external/opencv/build/ \
 		-I/external/opencv/modules/core/include/ \
 		-I/external/opencv/modules/imgproc/include/ \
