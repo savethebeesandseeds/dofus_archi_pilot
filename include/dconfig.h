@@ -23,7 +23,8 @@
 int readConfigValue(const char* configFile, const char* searchKey, char* valueBuffer, int bufferLength);
 char *config_wrapper(const char* key);
 char *config_window();
-char *config_temp_dir();
+char *config_temp_dir_pilot();
+char *config_temp_dir_prices();
 char *config_log_lvl();
 int config_period_sample();
 
@@ -120,9 +121,13 @@ BOOL config_bolean_wrapper(const char* key) {
 char *config_window() {
     return config_wrapper("window");
 }
-/* get config value for temp_dir key */
-char *config_temp_dir() {
-    return config_wrapper("temp_dir");
+/* get config value for temp_dir_pilot key */
+char *config_temp_dir_pilot() {
+    return config_wrapper("temp_dir_pilot");
+}
+/* get config value for temp_dir_prices key */
+char *config_temp_dir_prices() {
+    return config_wrapper("temp_dir_prices");
 }
 /* get config value for output_dir key */
 char *config_output_dir() {
@@ -187,4 +192,40 @@ double config_delta_position_threshold() {
 /* get config value for down_size_coef key */
 double config_down_size_coef() {
     return config_double_wrapper("down_size_coef");
+}
+/* get config value for prices_del_x_coord key */
+int config_prices_del_x_coord() {
+    return config_integer_wrapper("prices_del_x_coord");
+}
+/* get config value for prices_del_y_coord key */
+int config_prices_del_y_coord() {
+    return config_integer_wrapper("prices_del_y_coord");
+}
+/* get config value for prices_typebox_x_coord key */
+int config_prices_typebox_x_coord() {
+    return config_integer_wrapper("prices_typebox_x_coord");
+}
+/* get config value for prices_typebox_y_coord key */
+int config_prices_typebox_y_coord() {
+    return config_integer_wrapper("prices_typebox_y_coord");
+}
+/* get config value for wait_to_update_price_list key */
+int config_wait_to_update_price_list() {
+    return config_integer_wrapper("wait_to_update_price_list");
+}
+/* get config value for box_price_x key */
+int config_box_price_x() {
+    return config_integer_wrapper("box_price_x");
+}
+/* get config value for box_price_y key */
+int config_box_price_y() {
+    return config_integer_wrapper("box_price_y");
+}
+/* get config value for box_price_width key */
+int config_box_price_width() {
+    return config_integer_wrapper("box_price_width");
+}
+/* get config value for box_price_height key */
+int config_box_price_height() {
+    return config_integer_wrapper("box_price_height");
 }

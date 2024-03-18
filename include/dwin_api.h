@@ -366,3 +366,12 @@ void sendText(HWND hwnd, const char* text) {
 
     delete[] inputs; 
 }
+
+void ClickAtPoint(HWND hwnd, int x, int y) {
+    // Calculate the lParam value for the given coordinates
+    LPARAM lParam = MAKELPARAM(x, y);
+
+    // Post the mouse down and up messages to the specific window at the specified coordinates
+    PostMessage(hwnd, WM_LBUTTONDOWN, MK_LBUTTON, lParam);
+    PostMessage(hwnd, WM_LBUTTONUP, 0, lParam);
+}

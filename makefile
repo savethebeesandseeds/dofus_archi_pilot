@@ -1,7 +1,3 @@
-ifeq ($(MAKEFLAGS),)  # Check if MAKEFLAGS already set from the environment
-   MAKEFLAGS := -j4
-endif
-
 main:
 	x86_64-w64-mingw32-g++ -Wall -o \
 		./build/archi_pilot.exe main.cpp \

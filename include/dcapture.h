@@ -3,8 +3,8 @@
 #include "dutils.h"
 #include "dwin_api.h"
 
-void capture_loop() {
-    log_info("capture_loop() started\n");
+void pilot_capture_loop() {
+    log_info("pilot_capture_loop() started\n");
     Sleep(100); /* to let some set up gap for the other threads */
 
     /* Initialize the heap variables */
@@ -16,7 +16,7 @@ void capture_loop() {
 
     /* read the configuration */
     window = config_window();
-    temp_dir = config_temp_dir();
+    temp_dir = config_temp_dir_pilot();
     delay = config_period_sample();
     
     if (window == NULL || temp_dir == NULL || delay == -1) { 
@@ -39,9 +39,15 @@ void capture_loop() {
     while(0xF) {
 
         /* Further actions here... */
-        sprintf(output_file, "../data/temp/window_capture_%ld.bmp", count);
+        sprintf(output_file, "%s/window_capture_%ld.bmp", temp_dir, count);
         if (!CaptureWindow(hWnd, output_file)) {
-            log_error("Unable to capture image: %s\n", win_error_message());
+            log_error("Unable to capture [pilot] image: %s\n", win_error_message());
+            free(window);
+            free(temp_dir);
+            /* Wait a minute and restart */
+            Sleep(60000);
+            log_debug("pilot_capture_loop() restarted\n");
+            pilot_capture_loop();
         }
 
         /* Delay */
@@ -52,5 +58,5 @@ void capture_loop() {
     free(window);
     free(temp_dir);
 
-    log_debug("capture_loop() ended\n");
+    log_debug("pilot_capture_loop() ended\n");
 }

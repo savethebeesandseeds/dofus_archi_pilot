@@ -1,12 +1,12 @@
 #include "dconfig.h"
 #include "dutils.h"
 #include "dcapture.h"
-#include "dprocess.h"
+#include "dpilot_process.h"
 
 int main() {
     log_info("[Archi Pilot] Application Started...\n");
     /* read the configuration */
-    char *temp_dir = config_temp_dir();
+    char *temp_dir = config_temp_dir_pilot();
     if (temp_dir == NULL) { 
         log_error("Bad config\n"); 
         free(temp_dir);
@@ -22,11 +22,11 @@ int main() {
     {
         #pragma omp section
         {
-            process_loop();
+            pilot_process_loop();
         }
         #pragma omp section
         {
-            capture_loop();
+            pilot_capture_loop();
         }
     }
 
