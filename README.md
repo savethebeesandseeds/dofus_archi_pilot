@@ -1,5 +1,5 @@
 # Dofus Archi Pilot
-This is a bot for the game Dofus, it helps in the guigantic task of capturing all the Archimonsters. 
+This is a bot for the game Dofus, it helps in the gigantic task of capturing all the Archimonsters. 
 
 Enjoy playing and don't be a Snitch. 
 
